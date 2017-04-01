@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "Pokestop.Core", "Pokestop.Core\Pokestop.Core.fsproj", "{A048B006-EE82-4BD6-88DB-5D74506DE0CE}"
+EndProject
+Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "Pokestop.Core.UnitTests", "Pokestop.Core.UnitTests\Pokestop.Core.UnitTests.fsproj", "{6F86DDA1-8740-4639-9834-1478EDD54A84}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A048B006-EE82-4BD6-88DB-5D74506DE0CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A048B006-EE82-4BD6-88DB-5D74506DE0CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A048B006-EE82-4BD6-88DB-5D74506DE0CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A048B006-EE82-4BD6-88DB-5D74506DE0CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F86DDA1-8740-4639-9834-1478EDD54A84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F86DDA1-8740-4639-9834-1478EDD54A84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F86DDA1-8740-4639-9834-1478EDD54A84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F86DDA1-8740-4639-9834-1478EDD54A84}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
