@@ -33,6 +33,8 @@
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="GreatCircle.fsi" />
     <Compile Include="GreatCircle.fs" />
+    <Compile Include="SimulatedAnnealing.fsi" />
+    <Compile Include="SimulatedAnnealing.fs" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,4 @@
-﻿module Pokestop.Core.UnitTests
+﻿module Pokestop.Core.UnitTests.GreatCircleTest
 
 open NUnit.Framework
 open Pokestop.Core.GreatCircle
