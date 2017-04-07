@@ -42,10 +42,10 @@ let ``Medium distance``() =
 [<Test>]
 let ``Big distance``() = 
     // Arrange
-    let point1 = new Coordinate(latitude = -90.0<degree>, longitude = 0.0<degree>)
-    let point2 = new Coordinate(latitude = 90.0<degree>, longitude = 0.0<degree>)
+    let point1 = new Coordinate(latitude = 0.0<degree>, longitude = 0.0<degree>)
+    let point2 = new Coordinate(latitude = 0.0<degree>, longitude = 90.0<degree>)
     // Act
     let distance = GreatCircleDistanceOnEarth point1 point2
     // Assert
-    Assert.GreaterOrEqual(distance, 20015)
-    Assert.LessOrEqual(distance, 20016)
+    Assert.GreaterOrEqual(distance, 10007)
+    Assert.LessOrEqual(distance, 10008)

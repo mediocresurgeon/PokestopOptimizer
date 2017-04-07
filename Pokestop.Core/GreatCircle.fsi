@@ -13,7 +13,9 @@
         [<Sealed>]
         type Coordinate =
             new : latitude:float<degree> * longitude:float<degree> -> Coordinate
-            member Latitude : float<degree>
-            member Longitude : float<degree>
+            member LatitudeDeg : float<degree>
+            member LongitudeDeg : float<degree>
+            member LatitudeRad : float<radian>
+            member LongitudeRad : float<radian>
     
         val GreatCircleDistance : radius:float<'u> -> location1:Coordinate -> location2: Coordinate -> float<'u>
