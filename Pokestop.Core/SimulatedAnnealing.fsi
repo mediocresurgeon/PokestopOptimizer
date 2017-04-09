@@ -12,3 +12,5 @@ open Pokestop.Core.GreatCircle
         val GetAcceptanceProbability<[<Measure>] 'u> : previousDistance : float<'u> -> newDistance : float<'u> -> temperature : float -> float
 
         val GetTwoDifferentNonNegativeIntegers : random : Random -> maxExclusive : int -> int * int
+
+        val OptimizeOrderByDistance : places : List<Coordinate> -> random : Random -> List<Coordinate>

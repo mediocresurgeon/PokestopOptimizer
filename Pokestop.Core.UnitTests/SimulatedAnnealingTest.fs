@@ -1,5 +1,6 @@
 ﻿module Pokestop.Core.UnitTests.SimulatedAnnealing
 
+open System
 open NUnit.Framework
 open Pokestop.Core.GreatCircle
 open Pokestop.Core.SimulatedAnnealing
@@ -66,3 +67,18 @@ let ``Total distance of three elements``() =
     Assert.IsTrue(totalDistance.IsSome)
     Assert.GreaterOrEqual(totalDistance.Value, 30022)
     Assert.LessOrEqual(totalDistance.Value, 30023)
+
+[<Test>]
+let ``Shortest path between 4 points``() =
+    let loc1 = new Coordinate(latitude = 1.0<degree>, longitude = 1.0<degree>)
+    let loc2 = new Coordinate(latitude = 2.0<degree>, longitude = 2.0<degree>)
+    let loc3 = new Coordinate(latitude = 1.0<degree>, longitude = 2.0<degree>)
+    let loc4 = new Coordinate(latitude = 2.0<degree>, longitude = 1.0<degree>)
+    let locations = [ loc1; loc2; loc3; loc4; ]
+    let rand = new Random()
+
+    let optimalOrder = OptimizeOrderByDistance locations rand
+    let optimalDistance = GetRouteDistance earthRadius optimalOrder
+
+    Assert.GreaterOrEqual(optimalDistance.Value, 444)
+    Assert.LessOrEqual(optimalDistance.Value, 445)
