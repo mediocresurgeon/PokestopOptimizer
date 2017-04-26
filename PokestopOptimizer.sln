@@ -5,6 +5,8 @@ Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "Pokestop.Core", "Pokestop.C
 EndProject
 Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "Pokestop.Core.UnitTests", "Pokestop.Core.UnitTests\Pokestop.Core.UnitTests.fsproj", "{6F86DDA1-8740-4639-9834-1478EDD54A84}"
 EndProject
+Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "Pokestop.Runner", "Pokestop.Runner\Pokestop.Runner.fsproj", "{6659B45C-59A7-4740-BB8A-380724FBEF6A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,5 +21,9 @@ Global
 		{6F86DDA1-8740-4639-9834-1478EDD54A84}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F86DDA1-8740-4639-9834-1478EDD54A84}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F86DDA1-8740-4639-9834-1478EDD54A84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6659B45C-59A7-4740-BB8A-380724FBEF6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6659B45C-59A7-4740-BB8A-380724FBEF6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6659B45C-59A7-4740-BB8A-380724FBEF6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6659B45C-59A7-4740-BB8A-380724FBEF6A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

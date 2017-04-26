@@ -36,41 +36,46 @@ module SimulatedAnnealing =
             let distance = calcDistance places 0.0<_>
             Some (distance)
      
-    let GetAcceptanceProbability<[<Measure>] 'u> (previousDistance:float<'u>) (newDistance:float<'u>) (temperature:float) =
-        if (newDistance < previousDistance) then
+    let GetAcceptanceProbability (currentEnergy:float) (newEnergy:float) (temperature:float) =
+        if (currentEnergy > newEnergy) then
             1.0
         else
-            let diff = float (previousDistance - newDistance)
-            Math.Exp(diff/ temperature)
+            Math.Exp((currentEnergy - newEnergy) / temperature)
      
     let rec GetTwoDifferentNonNegativeIntegers (random:Random) (maxExclusive:int) =
         // This will loop endlessly if maxExclusive is 1
         // What will happen if maxExclusive is zero? Negative?
         let num1 = random.Next(maxExclusive)
-        let num2 = random.Next(maxExclusive)
+        let num2 = (num1 + 1) % maxExclusive
+        (num1, num2)
+        (*
         if num1 = num2 then
             GetTwoDifferentNonNegativeIntegers random maxExclusive
         else
             (num1, num2)
+        *)
 
     let OptimizeOrderByDistance (places:List<Coordinate>) (random:Random) =
         if places.Length < 4 then // lists of 3 or smaller always yield the same distance
             places
         else
             let getEarthDistance = GetRouteDistance 6371.0<kilometer>
-            let indexCount = places.Length
+            let listLength = places.Length
 
             let mutable bestSolution = places
-            let mutable computationBudget = 10000.0
-            while computationBudget > 1.0 do
-                let index1, index2 = GetTwoDifferentNonNegativeIntegers random indexCount
+            let mutable computationBudget = 1000.0
+            while computationBudget > 0.000001 do
+                let index1, index2 = GetTwoDifferentNonNegativeIntegers random listLength
 
                 let newSolution = Reorder bestSolution index1 index2
 
                 let bestSolutionDistance = getEarthDistance bestSolution
+                let bestSolutionEnergy = (bestSolutionDistance.Value / 1.0<kilometer>) / float listLength
                 let newSolutionDistance = getEarthDistance newSolution
-                let acceptanceProbability = GetAcceptanceProbability bestSolutionDistance.Value newSolutionDistance.Value computationBudget
+                let newSolutionEnergy = (newSolutionDistance.Value / 1.0<kilometer>) / float listLength
+
+                let acceptanceProbability = GetAcceptanceProbability bestSolutionEnergy newSolutionEnergy computationBudget
                 if acceptanceProbability > random.NextDouble() then
                     bestSolution <- newSolution
-                computationBudget <- computationBudget * (1.0 - 0.0003)
+                computationBudget <- computationBudget * (0.99998)
             bestSolution

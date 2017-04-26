@@ -15,6 +15,7 @@ module GreatCircle =
     let degreesToRadians (degrees:float<degree>) = System.Math.PI * degrees / 180.0<degree/radian>
 
     [<Sealed>]
+    [<StructuredFormatDisplay("<wpt lat=\"{LatitudeDeg}\" lon=\"{LongitudeDeg}\"><time>2014-01-01T00:00:00Z</time></wpt>")>]
     type Coordinate(latitude:float<degree>, longitude:float<degree>) =
       member this.LatitudeDeg = latitude
       member this.LongitudeDeg = longitude

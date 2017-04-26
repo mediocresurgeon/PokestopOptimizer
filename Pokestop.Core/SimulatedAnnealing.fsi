@@ -9,7 +9,7 @@ open Pokestop.Core.GreatCircle
 
         val GetRouteDistance<[<Measure>] 'u> : planetRadius:float<'u> -> places:List<Coordinate> -> float<'u> option
 
-        val GetAcceptanceProbability<[<Measure>] 'u> : previousDistance : float<'u> -> newDistance : float<'u> -> temperature : float -> float
+        val GetAcceptanceProbability : currentEnergy : float -> newEnergy : float -> temperature : float -> float
 
         val GetTwoDifferentNonNegativeIntegers : random : Random -> maxExclusive : int -> int * int
 
