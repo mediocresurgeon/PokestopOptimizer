@@ -1,4 +1,5 @@
 ﻿open System
+open System.Configuration
 open Pokestop.Core.GreatCircle
 open Pokestop.Core.SimulatedAnnealing
 
@@ -11,9 +12,11 @@ let secondsPerHour = 3600.0<second/hour>
 
 [<EntryPoint>]
 let main argv = 
-    //let rand = new Random()
+    let startingTemp = float(ConfigurationManager.AppSettings.Item("startingTemperature"))
+    let coolingRate = float(ConfigurationManager.AppSettings.Item("coolingRate"))
+    let rand = new Random()
     let waypoints = [ new Coordinate(47.7601<degree>, -122.2029<degree>);
-        (*new Coordinate(47.7595<degree>, -122.2037<degree>);
+        new Coordinate(47.7595<degree>, -122.2037<degree>);
         new Coordinate(47.7589<degree>, -122.20379<degree>);
         new Coordinate(47.7592<degree>, -122.2048<degree>);
         new Coordinate(47.75865<degree>, -122.2045<degree>);
@@ -40,28 +43,28 @@ let main argv =
         new Coordinate(47.7602<degree>, -122.2048<degree>);
         new Coordinate(47.7601<degree>, -122.2043<degree>);
         new Coordinate(47.7602<degree>, -122.2035<degree>);
-        new Coordinate(47.7606<degree>, -122.2023<degree>);*)
+        new Coordinate(47.7606<degree>, -122.2023<degree>);
         new Coordinate(47.7603<degree>, -122.2018<degree>); ]
-    
+    (*
     let mutable prev = waypoints.Head
     for wp in waypoints do
         let distance = GreatCircleDistance 6371.0<kilometer> wp prev
         let time = (distance / 10.5<kilometer/hour>) * secondsPerHour
         printfn "%A: %O" wp time
         prev <- wp
-
-    (*
+        *)
+    
     let getEarthDistance = GetRouteDistance 6371.0<kilometer>
     let startingRouteDistance = getEarthDistance waypoints
     printfn "Initial distance: %A" startingRouteDistance
 
-    let bestRoute = OptimizeOrderByDistance waypoints rand
+    let bestRoute = OptimizeOrderByDistance waypoints startingTemp coolingRate rand
     let bestRouteDistance = getEarthDistance bestRoute
     printfn "Final distance:   %A" bestRouteDistance
 
     if startingRouteDistance > bestRouteDistance then
         printfn "%A" bestRoute
-    *)
+    
 
     0 // return an integer exit code
 

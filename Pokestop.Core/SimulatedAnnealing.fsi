@@ -13,4 +13,4 @@ open Pokestop.Core.GreatCircle
 
         val GetTwoDifferentNonNegativeIntegers : random : Random -> maxExclusive : int -> int * int
 
-        val OptimizeOrderByDistance : places : List<Coordinate> -> random : Random -> List<Coordinate>
+        val OptimizeOrderByDistance : places : List<Coordinate> -> startingTemperature : float -> coolingRate : float -> random : Random -> List<Coordinate>

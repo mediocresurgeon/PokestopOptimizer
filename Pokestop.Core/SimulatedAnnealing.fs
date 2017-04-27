@@ -55,7 +55,7 @@ module SimulatedAnnealing =
             (num1, num2)
         *)
 
-    let OptimizeOrderByDistance (places:List<Coordinate>) (random:Random) =
+    let OptimizeOrderByDistance (places:List<Coordinate>) (startingTemperature:float) (coolingRate:float) (random:Random) =
         if places.Length < 4 then // lists of 3 or smaller always yield the same distance
             places
         else
@@ -63,7 +63,8 @@ module SimulatedAnnealing =
             let listLength = places.Length
 
             let mutable bestSolution = places
-            let mutable computationBudget = 1000.0
+            let mutable computationBudget = startingTemperature
+            let budgetMultiplier = 1.0 - coolingRate
             while computationBudget > 0.000001 do
                 let index1, index2 = GetTwoDifferentNonNegativeIntegers random listLength
 
@@ -77,5 +78,5 @@ module SimulatedAnnealing =
                 let acceptanceProbability = GetAcceptanceProbability bestSolutionEnergy newSolutionEnergy computationBudget
                 if acceptanceProbability > random.NextDouble() then
                     bestSolution <- newSolution
-                computationBudget <- computationBudget * (0.99998)
+                computationBudget <- computationBudget * budgetMultiplier
             bestSolution
