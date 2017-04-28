@@ -48,12 +48,6 @@ module SimulatedAnnealing =
         let num1 = random.Next(maxExclusive)
         let num2 = (num1 + 1) % maxExclusive
         (num1, num2)
-        (*
-        if num1 = num2 then
-            GetTwoDifferentNonNegativeIntegers random maxExclusive
-        else
-            (num1, num2)
-        *)
 
     let OptimizeOrderByDistance (places:List<Coordinate>) (startingTemperature:float) (coolingRate:float) (random:Random) =
         if places.Length < 4 then // lists of 3 or smaller always yield the same distance

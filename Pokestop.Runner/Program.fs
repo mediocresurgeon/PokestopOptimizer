@@ -3,10 +3,12 @@ open System.Configuration
 open Pokestop.Core.GreatCircle
 open Pokestop.Core.SimulatedAnnealing
 
+(*
 [<Measure>] type second
 [<Measure>] type hour
 
 let secondsPerHour = 3600.0<second/hour>
+*)
 
 
 
