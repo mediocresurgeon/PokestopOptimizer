@@ -17,6 +17,19 @@ module SimulatedAnnealing =
         
         list |> List.map transform
 
+    let Shuffle<'T when 'T : equality> (list:List<'T>) (random:Random) =
+        // Using Durstenfeld's version of Fisher–Yates shuffle
+        // https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#The_modern_algorithm
+        let elements = List.toArray list
+        let highestRandomIndex = elements.Length - 1
+        for i in 0..highestRandomIndex do
+            let highIndexToSwap = highestRandomIndex - i
+            let lowIndexToSwap = random.Next highestRandomIndex
+            let lowIndexItem = Array.get elements lowIndexToSwap
+            Array.set elements lowIndexToSwap (Array.get elements highIndexToSwap)
+            Array.set elements highIndexToSwap lowIndexItem
+        elements |> Array.toList
+
     let GetRouteDistance<[<Measure>] 'u> (planetRadius:float<'u>) (places:List<Coordinate>) = 
         if places.IsEmpty then None
         else 
@@ -49,17 +62,19 @@ module SimulatedAnnealing =
         let num2 = (num1 + 1) % maxExclusive
         (num1, num2)
 
-    let OptimizeOrderByDistance (places:List<Coordinate>) (startingTemperature:float) (coolingRate:float) (random:Random) =
+    let OptimizeOrderByDistance (places:List<Coordinate>) (startingTemperature:float) (finalTemperature:float) (coolingRate:float) (random:Random) =
         if places.Length < 4 then // lists of 3 or smaller always yield the same distance
             places
         else
             let getEarthDistance = GetRouteDistance 6371.0<kilometer>
             let listLength = places.Length
 
+            let randomizedPlaces = Shuffle places
+
             let mutable bestSolution = places
             let mutable computationBudget = startingTemperature
             let budgetMultiplier = 1.0 - coolingRate
-            while computationBudget > 0.000001 do
+            while computationBudget > finalTemperature do
                 let index1, index2 = GetTwoDifferentNonNegativeIntegers random listLength
 
                 let newSolution = Reorder bestSolution index1 index2

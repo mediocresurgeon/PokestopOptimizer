@@ -15,6 +15,7 @@ let secondsPerHour = 3600.0<second/hour>
 [<EntryPoint>]
 let main argv = 
     let startingTemp = float(ConfigurationManager.AppSettings.Item("startingTemperature"))
+    let finalTemp = float(ConfigurationManager.AppSettings.Item("finalTemperature"))
     let coolingRate = float(ConfigurationManager.AppSettings.Item("coolingRate"))
     let rand = new Random()
     let waypoints = [ new Coordinate(47.7601<degree>, -122.2029<degree>);
@@ -60,13 +61,23 @@ let main argv =
     let startingRouteDistance = getEarthDistance waypoints
     printfn "Initial distance: %A" startingRouteDistance
 
-    let bestRoute = OptimizeOrderByDistance waypoints startingTemp coolingRate rand
+    let numberOfTries = 50
+    let mutable overallDistance = 0.0<kilometer>
+    for i in 0..numberOfTries do
+        let route = OptimizeOrderByDistance waypoints startingTemp finalTemp coolingRate rand
+        let newDistance = getEarthDistance route
+        overallDistance <- overallDistance + newDistance.Value
+
+    let avgSolution = overallDistance / float numberOfTries
+    printfn "Average solution distance: %A" avgSolution
+    (*
+    let bestRoute = OptimizeOrderByDistance waypoints startingTemp finalTemp coolingRate rand
     let bestRouteDistance = getEarthDistance bestRoute
     printfn "Final distance:   %A" bestRouteDistance
 
     if startingRouteDistance > bestRouteDistance then
         printfn "%A" bestRoute
-    
+    *)
 
     0 // return an integer exit code
 

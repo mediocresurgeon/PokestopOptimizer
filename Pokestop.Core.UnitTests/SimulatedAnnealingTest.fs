@@ -77,9 +77,10 @@ let ``Shortest path between 4 points``() =
     let locations = [ loc1; loc2; loc3; loc4; ]
     let rand = new Random()
     let startingTemp = 1000.0
+    let finalTemp = 0.000001
     let coolingRate = 0.0003
 
-    let optimalOrder = OptimizeOrderByDistance locations startingTemp coolingRate rand
+    let optimalOrder = OptimizeOrderByDistance locations startingTemp finalTemp coolingRate rand
     let optimalDistance = GetRouteDistance earthRadius optimalOrder
 
     Assert.GreaterOrEqual(optimalDistance.Value, 444)
