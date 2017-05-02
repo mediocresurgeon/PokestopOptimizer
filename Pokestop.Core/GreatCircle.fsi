@@ -12,7 +12,8 @@
 
         [<Sealed>]
         type Coordinate =
-            new : latitude:float<degree> * longitude:float<degree> -> Coordinate
+            new : name:string * latitude:float<degree> * longitude:float<degree> -> Coordinate
+            member Name : string
             member LatitudeDeg : float<degree>
             member LongitudeDeg : float<degree>
             member LatitudeRad : float<radian>

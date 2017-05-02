@@ -35,7 +35,7 @@ let ``Total distance of empty list is zero``() =
 
 [<Test>]
 let ``Total distance of single element is zero``() =
-    let loc1 = new Coordinate(1.0<degree>, 1.0<degree>)
+    let loc1 = new Coordinate("loc1", 1.0<degree>, 1.0<degree>)
     let locations = [ loc1 ]
 
     let totalDistance = GetRouteDistance earthRadius locations
@@ -45,8 +45,8 @@ let ``Total distance of single element is zero``() =
 
 [<Test>]
 let ``Total distance of two close elements``() =
-    let loc1 = new Coordinate(latitude = 1.0<degree>, longitude = 1.0<degree>)
-    let loc2 = new Coordinate(latitude = 2.0<degree>, longitude = 2.0<degree>)
+    let loc1 = new Coordinate(name = "loc1", latitude = 1.0<degree>, longitude = 1.0<degree>)
+    let loc2 = new Coordinate(name = "loc2", latitude = 2.0<degree>, longitude = 2.0<degree>)
     let locations = [ loc1; loc2; ]
 
     let totalDistance = GetRouteDistance earthRadius locations
@@ -57,9 +57,9 @@ let ``Total distance of two close elements``() =
 
 [<Test>]
 let ``Total distance of three elements``() =
-    let loc1 = new Coordinate(latitude = 0.0<degree>, longitude = 0.0<degree>)
-    let loc2 = new Coordinate(latitude = 90.0<degree>, longitude = 0.0<degree>)
-    let loc3 = new Coordinate(latitude = 0.0<degree>, longitude = 90.0<degree>)
+    let loc1 = new Coordinate(name = "loc1", latitude = 0.0<degree>, longitude = 0.0<degree>)
+    let loc2 = new Coordinate(name = "loc2", latitude = 90.0<degree>, longitude = 0.0<degree>)
+    let loc3 = new Coordinate(name = "loc3", latitude = 0.0<degree>, longitude = 90.0<degree>)
     let locations = [ loc1; loc2; loc3; ]
 
     let totalDistance = GetRouteDistance earthRadius locations
@@ -70,10 +70,10 @@ let ``Total distance of three elements``() =
 
 [<Test>]
 let ``Shortest path between 4 points``() =
-    let loc1 = new Coordinate(latitude = 1.0<degree>, longitude = 1.0<degree>)
-    let loc2 = new Coordinate(latitude = 2.0<degree>, longitude = 2.0<degree>)
-    let loc3 = new Coordinate(latitude = 1.0<degree>, longitude = 2.0<degree>)
-    let loc4 = new Coordinate(latitude = 2.0<degree>, longitude = 1.0<degree>)
+    let loc1 = new Coordinate(name = "loc1", latitude = 1.0<degree>, longitude = 1.0<degree>)
+    let loc2 = new Coordinate(name = "loc2", latitude = 2.0<degree>, longitude = 2.0<degree>)
+    let loc3 = new Coordinate(name = "loc3", latitude = 1.0<degree>, longitude = 2.0<degree>)
+    let loc4 = new Coordinate(name = "loc4", latitude = 2.0<degree>, longitude = 1.0<degree>)
     let locations = [ loc1; loc2; loc3; loc4; ]
     let rand = new Random()
     let startingTemp = 1000.0

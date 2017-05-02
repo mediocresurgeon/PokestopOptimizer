@@ -36,6 +36,8 @@
     <Compile Include="GreatCircle.fs" />
     <Compile Include="SimulatedAnnealing.fsi" />
     <Compile Include="SimulatedAnnealing.fs" />
+    <Compile Include="IO.fsi" />
+    <Compile Include="IO.fs" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

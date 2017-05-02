@@ -55,7 +55,9 @@
   <ItemGroup>
     <Compile Include="GreatCircleTest.fs" />
     <Compile Include="SimulatedAnnealingTest.fs" />
+    <Compile Include="IOTest.fs" />
     <None Include="packages.config" />
+    <EmbeddedResource Include="TestCoordinates.gpx" />
   </ItemGroup>
   <Import Project="$(FSharpTargetsPath)" />
 </Project>
